@@ -11,8 +11,3 @@ $this->pageTitle=Yii::app()->name;
 <p>Testing</p>
 
 <?php $this->endWidget(); ?>
-<?php 
-    print_r(Yii::app()->db->createCommand("show databases;")->queryAll());
-
-
-?>

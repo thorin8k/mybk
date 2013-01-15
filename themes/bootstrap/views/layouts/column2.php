@@ -2,7 +2,7 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="row">
     <div class="span9">
-        <div id="content">
+        <div id="content" style="min-height: 400px;">
             <?php echo $content; ?>
         </div><!-- content -->
     </div>
