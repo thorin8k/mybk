@@ -9,7 +9,7 @@
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'My BK',
         'theme'=>'bootstrap', 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -52,19 +52,20 @@ return array(
 			),
 		),
 		*/
+            /*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
 		// uncomment the following to use a MySQL database
-		/*
+		*/
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
+			'connectionString' => 'mysql:host=localhost;dbname=mysql',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => '1',
 			'charset' => 'utf8',
 		),
-		*/
+		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',

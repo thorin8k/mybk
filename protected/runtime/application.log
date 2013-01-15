@@ -88,3 +88,14 @@ Stack trace:
 REQUEST_URI=/landra05/sc/index.php?r=site/index
 HTTP_REFERER=http://localhost/landra05/sc/index.php?r=site/contact
 ---
+2013/01/15 14:02:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "page".' in D:\xampp\htdocs\mybk\framework\web\CController.php:483
+Stack trace:
+#0 D:\xampp\htdocs\mybk\framework\web\CController.php(270): CController->missingAction('page')
+#1 D:\xampp\htdocs\mybk\framework\web\CWebApplication.php(282): CController->run('page')
+#2 D:\xampp\htdocs\mybk\framework\web\CWebApplication.php(141): CWebApplication->runController('site/page')
+#3 D:\xampp\htdocs\mybk\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\mybk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mybk/index.php?r=site/page&view=about
+HTTP_REFERER=http://localhost/mybk/index.php?r=site/index
+---
