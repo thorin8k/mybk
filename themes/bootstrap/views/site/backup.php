@@ -6,14 +6,17 @@ $this->breadcrumbs=array(
 	'About',
 );
 ?>
-<h1>Backup</h1>
+<h2>Backup</h2>
 
 <p>Selecciona las tablas de las cuales se realizará un backup</p>
 
 <?php 
-    
-$gridDataProvider = new CArrayDataProvider(Yii::app()->db->createCommand("show databases;")->queryAll());
-
+$data = array();
+$dbList = Yii::app()->db->createCommand("show databases;")->queryAll();
+foreach ($dbList as $key=>$db) {
+    $data[] = array('id'=>$key,'Database'=> $db['Database']);
+}
+$gridDataProvider = new CArrayDataProvider($data);
 $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'dataProvider'=>$gridDataProvider,
