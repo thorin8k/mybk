@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'config':
  * @property integer $id
- * @property integer $key
+ * @property integer key_cfg
  * @property integer $value
  */
 class Config extends CActiveRecord
@@ -36,10 +36,10 @@ class Config extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('key, value', 'required'),
+			array('key_cfg, value', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, key, value', 'safe', 'on'=>'search'),
+			array('id, key_cfg, value', 'safe', 'on'=>'search'),
 		);
 	}
 

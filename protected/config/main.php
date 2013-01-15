@@ -18,7 +18,8 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'application.components.Dropbox.*'
+                'application.components.Dropbox.*',
+                'application.components.HTTP.*',
 	),
         
 	'modules'=>array(
@@ -63,7 +64,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=mybk',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '1',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
@@ -92,6 +93,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'consumerKey'=>'u0gsz62pewn902m',
+		'consumerSecret'=>'atkd6kutk4lqtpr',
 	),
 );
