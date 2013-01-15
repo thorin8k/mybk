@@ -33,17 +33,13 @@
 		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-
+	<?php endif?>   
 	<?php echo $content; ?>
-
-	<div class="clear"></div>
-        <hr/>
-	<footer id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</footer><!-- footer -->
+        <div id="footer">
+            <hr/>
+            Developed in <?php echo date('Y'); ?> by PolloSoft.<br/>
+            <?php echo Yii::powered(); ?>
+        </div><!-- footer -->
 
 </div><!-- page -->
 

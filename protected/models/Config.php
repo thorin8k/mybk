@@ -37,7 +37,6 @@ class Config extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('key, value', 'required'),
-			array('key, value', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, key, value', 'safe', 'on'=>'search'),
