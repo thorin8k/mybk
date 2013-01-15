@@ -1,0 +1,90 @@
+2013/01/15 11:47:03 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.components.Bootstrap" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/landra05/htdocs/sc/framework/YiiBase.php:316
+Stack trace:
+#0 /home/landra05/htdocs/sc/framework/YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 /home/landra05/htdocs/sc/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#2 /home/landra05/htdocs/sc/framework/base/CModule.php(103): CModule->getComponent('bootstrap')
+#3 /home/landra05/htdocs/sc/protected/views/layouts/main.php(18): CModule->__get('bootstrap')
+#4 /home/landra05/htdocs/sc/framework/web/CBaseController.php(126): require('/home/landra05/...')
+#5 /home/landra05/htdocs/sc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/landra05/...', Array, true)
+#6 /home/landra05/htdocs/sc/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/landra05/...', Array, true)
+#7 /home/landra05/htdocs/sc/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/landra05/htdocs/sc/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/landra05/htdocs/sc/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/landra05/htdocs/sc/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/landra05/htdocs/sc/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/landra05/htdocs/sc/framework/web/CBaseController.php(126): require('/home/landra05/...')
+#13 /home/landra05/htdocs/sc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/landra05/...', Array, true)
+#14 /home/landra05/htdocs/sc/framework/web/CController.php(784): CBaseController->renderFile('/home/landra05/...', Array, true)
+#15 /home/landra05/htdocs/sc/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /home/landra05/htdocs/sc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/landra05/htdocs/sc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/landra05/htdocs/sc/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/landra05/htdocs/sc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/landra05/htdocs/sc/framework/web/CWebApplication.php(282): CController->run('index')
+#21 /home/landra05/htdocs/sc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index')
+#22 /home/landra05/htdocs/sc/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/landra05/htdocs/sc/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/landra05/sc/index.php?r=site/index
+HTTP_REFERER=http://localhost/landra05/sc/index.php?r=site/contact
+---
+2013/01/15 11:47:23 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.components.Bootstrap" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/landra05/htdocs/sc/framework/YiiBase.php:316
+Stack trace:
+#0 /home/landra05/htdocs/sc/framework/YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 /home/landra05/htdocs/sc/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#2 /home/landra05/htdocs/sc/framework/base/CModule.php(103): CModule->getComponent('bootstrap')
+#3 /home/landra05/htdocs/sc/protected/views/layouts/main.php(18): CModule->__get('bootstrap')
+#4 /home/landra05/htdocs/sc/framework/web/CBaseController.php(126): require('/home/landra05/...')
+#5 /home/landra05/htdocs/sc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/landra05/...', Array, true)
+#6 /home/landra05/htdocs/sc/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/landra05/...', Array, true)
+#7 /home/landra05/htdocs/sc/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/landra05/htdocs/sc/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/landra05/htdocs/sc/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/landra05/htdocs/sc/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/landra05/htdocs/sc/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/landra05/htdocs/sc/framework/web/CBaseController.php(126): require('/home/landra05/...')
+#13 /home/landra05/htdocs/sc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/landra05/...', Array, true)
+#14 /home/landra05/htdocs/sc/framework/web/CController.php(784): CBaseController->renderFile('/home/landra05/...', Array, true)
+#15 /home/landra05/htdocs/sc/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /home/landra05/htdocs/sc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/landra05/htdocs/sc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/landra05/htdocs/sc/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/landra05/htdocs/sc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/landra05/htdocs/sc/framework/web/CWebApplication.php(282): CController->run('index')
+#21 /home/landra05/htdocs/sc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index')
+#22 /home/landra05/htdocs/sc/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/landra05/htdocs/sc/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/landra05/sc/index.php?r=site/index
+HTTP_REFERER=http://localhost/landra05/sc/index.php?r=site/contact
+---
+2013/01/15 11:47:24 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.components.Bootstrap" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/landra05/htdocs/sc/framework/YiiBase.php:316
+Stack trace:
+#0 /home/landra05/htdocs/sc/framework/YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 /home/landra05/htdocs/sc/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#2 /home/landra05/htdocs/sc/framework/base/CModule.php(103): CModule->getComponent('bootstrap')
+#3 /home/landra05/htdocs/sc/protected/views/layouts/main.php(18): CModule->__get('bootstrap')
+#4 /home/landra05/htdocs/sc/framework/web/CBaseController.php(126): require('/home/landra05/...')
+#5 /home/landra05/htdocs/sc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/landra05/...', Array, true)
+#6 /home/landra05/htdocs/sc/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/landra05/...', Array, true)
+#7 /home/landra05/htdocs/sc/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/landra05/htdocs/sc/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/landra05/htdocs/sc/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/landra05/htdocs/sc/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/landra05/htdocs/sc/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/landra05/htdocs/sc/framework/web/CBaseController.php(126): require('/home/landra05/...')
+#13 /home/landra05/htdocs/sc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/landra05/...', Array, true)
+#14 /home/landra05/htdocs/sc/framework/web/CController.php(784): CBaseController->renderFile('/home/landra05/...', Array, true)
+#15 /home/landra05/htdocs/sc/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /home/landra05/htdocs/sc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/landra05/htdocs/sc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/landra05/htdocs/sc/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/landra05/htdocs/sc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/landra05/htdocs/sc/framework/web/CWebApplication.php(282): CController->run('index')
+#21 /home/landra05/htdocs/sc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index')
+#22 /home/landra05/htdocs/sc/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/landra05/htdocs/sc/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/landra05/sc/index.php?r=site/index
+HTTP_REFERER=http://localhost/landra05/sc/index.php?r=site/contact
+---
