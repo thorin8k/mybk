@@ -45,12 +45,37 @@ class SiteController extends Controller
 
 	public function actionConfig()
 	{
-		
-		$this->render('config');
+                if(isset($_GET['revoke']) && $_GET['revoke'] == 1){
+                    Config::addOrSetConfig("dropState",1);
+                }
+		$state = 0;
+                $tokens = array();
+                $state = Config::getConfig("dropState");
+                $tokens = $this->loadConfigTokens();
+                if(empty($state) || empty($tokens)){
+                    Config::addOrSetConfig("dropState",1);
+                    $state=1;
+                }
+		$this->render('config',array('state'=>$state,'tokens'=>$tokens ));
 	}
 
 	public function actionBackup()
 	{
 		$this->render('backup');
 	}
+        
+        
+
+        public function loadConfigTokens(){
+            $tokens = array();
+            $tokens['token'] = Config::getConfig('dropToken');;
+            $tokens['token_secret'] = Config::getConfig('dropTokenSec');
+
+            return $tokens;
+        }
+
+        public function setConfigTokens($token,$secret){
+            Config::addOrSetConfig('dropToken', $token);
+            Config::addOrSetConfig('dropTokenSec', $secret);
+        }
 }

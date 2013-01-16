@@ -15,15 +15,6 @@ $this->breadcrumbs=array(
 $oauth = new Dropbox_OAuth_PEAR(Yii::app()->params['consumerKey'], Yii::app()->params['consumerSecret']);
 $dropbox = new Dropbox_API($oauth);
 
-$state = 1;
-$tokens = array();
-$cfg = Config::model()->find('key_cfg = "dropToken"');
-$cfgSec = Config::model()->find('key_cfg = "dropTokenSec"');
-if(!empty($cfg) && !empty($cfgSec)){
-    $tokens['token'] = $cfg->value;
-    $tokens['token_secret'] = $cfgSec->value;
-    $state = 2;
-}
 
 echo '<div>';
 echo "<b>Acceso a Dropbox: </b>";
@@ -31,41 +22,39 @@ switch($state) {
     case 1 :
         $tokens = $oauth->getRequestToken();
         echo "Pulse en el siguiente enlace para autorizar a la aplicación:\n";
-        echo "<a href=".$oauth->getAuthorizeUrl('http://localhost/mybk/index.php?r=site/config&state=2').">Autorizar</a>";
-        $cfg = new Config();
-        $cfg->key_cfg = "dropToken";
-        $cfg->value = $tokens['token'];
-        $cfg->save();
-        $cfg = new Config();
-        $cfg->key_cfg = "dropTokenSec";
-        $cfg->value = $tokens['token_secret'];
-        $cfg->save();
+        echo "<a href=".$oauth->getAuthorizeUrl('http://'.Yii::app()->request->getServerName().Yii::app()->request->requestUri).">Autorizar</a>";
+        Config::addOrSetConfig("dropState",2);
+        $this->setConfigTokens($tokens['token'],$tokens['token_secret']);
         break;
     case 2 :                
         $oauth->setToken($tokens);
         try {
-            $tokens = $oauth->getAccessToken();
-            $cfgQ = Config::model()->find('key_cfg = "dropToken"');
-            $cfg = Config::model()->findByPk($cfgSec->id);
-            $cfg->key_cfg = "dropToken";
-            $cfg->value = $tokens['token'];
-            $cfg->save();
-            $cfgQ = Config::model()->find('key_cfg = "dropTokenSec"');
-            $cfg = Config::model()->findByPk($cfgQ->id);
-            $cfg->key_cfg = "dropTokenSec";
-            $cfg->value = $tokens['token_secret'];
-            $cfg->save();
-        } catch (Exception $exc) {
+            $response = $dropbox->getAccountInfo();
+            Config::addOrSetConfig("dropState",3);
             $state = 3;
-        }
-        $state = 3;
-        
+        } catch (Exception $exc) {
+            if(!empty($tokens)){
+                try {
+                    $tokens = $oauth->getAccessToken();
+                    $this->setConfigTokens($tokens['token'],$tokens['token_secret']);
+                    Config::addOrSetConfig("dropState",3);
+                    $state = 3;
+                } catch (Exception $exc) {
+                    Config::addOrSetConfig("dropState",1);
+                    $this->redirect(array('config'));
+                    break;
+                }
+            }
+        }        
     case 3 :
-        echo "El usuario ha sido autenticado\n";
         $oauth->setToken($tokens);
+        $data = $dropbox->getAccountInfo();
+        echo "El usuario: ".$data['display_name']." ha sido autenticado.   ";
+        echo CHtml::link("Revocar Acceso",array('site/config','revoke'=>true));
         break;
 }
 echo '</div>';
+
 
 
 ?>

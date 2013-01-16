@@ -30,17 +30,11 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     ),
 ));
 
-$oauth = new Dropbox_OAuth_PEAR(Yii::app()->params['consumerKey'], Yii::app()->params['consumerSecret']);
-
-$tokens = array();
-$cfg = Config::model()->find('key_cfg = "dropToken"');
-$cfgSec = Config::model()->find('key_cfg = "dropTokenSec"');
-if(!empty($cfg) && !empty($cfgSec)){
-    $tokens['token'] = $cfg->value;
-    $tokens['token_secret'] = $cfgSec->value;
-}
-$oauth->setToken($tokens);
-
-$dropbox = new Dropbox_API($oauth);
-$dropbox->putFile("pr.txt", "./temp/pr.txt")
+//$oauth = new Dropbox_OAuth_PEAR(Yii::app()->params['consumerKey'], Yii::app()->params['consumerSecret']);
+//
+//$tokens = $this->loadConfigTokens();
+//$oauth->setToken($tokens);
+//
+//$dropbox = new Dropbox_API($oauth);
+//$dropbox->putFile("pr.txt", "./temp/pr.txt")
 ?>

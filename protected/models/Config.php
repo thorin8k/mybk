@@ -85,4 +85,20 @@ class Config extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        public static function addOrSetConfig($key,$value){
+            $cfg;
+            $cfgQ = Config::model()->find("key_cfg = '$key'");
+            if(!empty($cfgQ)){
+                $cfg = Config::model()->findByPk($cfgQ->id);
+            }else{
+                $cfg = new Config();
+                $cfg->key_cfg = $key;
+            }
+            $cfg->value = $value;
+            $cfg->save();
+        }
+        public static function getConfig($key){
+            $cfgQ = Config::model()->find("key_cfg = '$key'");
+            return $cfgQ != null ? $cfgQ->value : null;
+        }
 }
