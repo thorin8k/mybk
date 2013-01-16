@@ -64,7 +64,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=mybk',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '1',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		

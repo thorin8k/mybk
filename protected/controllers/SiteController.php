@@ -68,14 +68,22 @@ class SiteController extends Controller
             }
             $errors = "";
             if(isset($_GET['dobk'])){
+                
+                $filterDB = array();
+                foreach ($dbList as $key=>$db) {
+                    if(!in_array($key,explode(',',$_GET['bkids']))){
+                        $filterDB[] = $db['Database'];
+                    }
+                }
+                
                 $db = new MYSQL_DUMP;
                 $db->dbhost = 'localhost';
                 $db->dbuser = 'root';
-                $db->dbpwd = '1';
+                $db->dbpwd = '';
                 $db->backupsToKeep = 30;
                 $db->showDebug = false;
                 $db->backupDir = './temp/backups/';
-                $db->ignoreDatabases = array_diff_key($data,explode(',',$_GET['bkids']));
+                $db->ignoreDatabases = $filterDB;
                 //$db->ignoreDatabases = array('test','mysql','performance_schema','phpmyadmin');
                 //$db->emptyList = array('largedb.large_table1','largedb.cachetable');
                 $status ="success";

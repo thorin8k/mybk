@@ -158,6 +158,7 @@ class MYSQL_DUMP{
 		$this->generateDbDumps();
 
 		$this->debug('Compressing backups');
+                //TODO IAGO: facilitar la compresión mediante ZIPArchive de php(multiplataforma)
 		exec('cd '.$this->backupDir.' ; '.$this->tar_binary.' -jcf '.$this->backupFormat.'.tar.bz2 '.$this->backupFormat.' > /dev/null');
 		chmod($this->backupDir.'/'.$this->backupFormat.'.tar.bz2', $this->savePermissions);
 		if (!$this->recursive_remove_directory($this->backupDir.'/'.$this->backupFormat)) {
