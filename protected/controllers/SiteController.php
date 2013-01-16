@@ -3,7 +3,7 @@
 class SiteController extends Controller
 {
         
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 	/**
 	 * Declares class-based actions.
 	 */
@@ -61,7 +61,37 @@ class SiteController extends Controller
 
 	public function actionBackup()
 	{
-		$this->render('backup');
+            $data = array();
+            $dbList = Yii::app()->db->createCommand("show databases;")->queryAll();
+            foreach ($dbList as $key=>$db) {
+                $data[] = array('id'=>$key,'Database'=> $db['Database']);
+            }
+            $errors = "";
+            if(isset($_GET['dobk'])){
+                $db = new MYSQL_DUMP;
+                $db->dbhost = 'localhost';
+                $db->dbuser = 'root';
+                $db->dbpwd = '1';
+                $db->backupsToKeep = 30;
+                $db->showDebug = false;
+                $db->backupDir = './temp/backups/';
+                $db->ignoreDatabases = array_diff_key($data,explode(',',$_GET['bkids']));
+                //$db->ignoreDatabases = array('test','mysql','performance_schema','phpmyadmin');
+                //$db->emptyList = array('largedb.large_table1','largedb.cachetable');
+                $status ="success";
+                if(!$db->dumpDatabases()){
+                    $errors .= $db->errorMsg;
+                    $status= 'failure';
+                }
+                echo CJSON::encode(array(
+                        'status'=>$status,
+                        'div'=> $errors,
+                    ));
+                exit;
+            }
+
+            $gridDataProvider = new CArrayDataProvider($data,array('pagination'=>false));
+            $this->render('backup',array('gridDataProvider'=>$gridDataProvider,'errors'=>$errors));
 	}
         
         

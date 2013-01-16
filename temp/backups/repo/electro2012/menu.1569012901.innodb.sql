@@ -1,0 +1,13 @@
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
+  `texto` varchar(45) CHARACTER SET latin1 DEFAULT '',
+  `nivel` int(11) DEFAULT '0',
+  `idpadre` int(11) DEFAULT '0',
+  `raiz` int(11) DEFAULT '0',
+  `name` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `menu` VALUES (1,'Archivo',1,1,1,'Menu_001'),(2,'Empresa',1,2,1,'Menu_002'),(3,'Laboral',1,3,1,'Menu_003'),(4,'Produccion',1,4,1,'Menu_004'),(5,'Utilidades',1,5,1,'Menu_005'),(6,'Informes',1,6,1,'Menu_006'),(7,'Ayuda',1,7,1,'Menu_007'),(8,'Administracion',1,8,1,'Menu_008'),(9,'Salir',2,1,0,'Menu_009'),(10,'Empresa',2,2,0,'Menu_010'),(11,'Empleados',2,2,0,'Menu_011'),(12,'Clientes',2,2,0,'Menu_012'),(13,'Proveedores',2,2,0,'Menu_013'),(14,'Almacen',2,2,0,'Menu_014'),(15,'Centros de Coste',3,10,0,'Menu_015'),(16,'Empleados',3,11,0,'Menu_016'),(17,'Presencia',3,11,0,'Menu_017'),(18,'Gestión de Nóminas',2,3,0,'Menu_018'),(19,'Clientes',3,12,0,'Menu_019'),(20,'Proveedores',3,13,0,'Menu_020'),(21,'Incidencias',3,13,0,'Menu_021'),(22,'Pedidos',3,13,0,'Menu_022'),(23,'Gestión de Incidencias',4,21,0,'Menu_023'),(24,'Informe de Incidencias',4,21,0,'Menu_024'),(25,'Búsqueda de Incidencias',4,21,0,'Menu_025'),(26,'Gestión de Obras',2,4,0,'Menu_026'),(27,'Obras',3,26,0,'Menu_027'),(28,'Agrupación de Obras',3,26,0,'Menu_028'),(29,'Procesos',3,26,0,'Menu_029'),(30,'Importación Telematel',4,29,0,'Menu_030'),(31,'Exportación',4,29,0,'Menu_031'),(32,'Gestión de Cableado',2,5,0,'Menu_032'),(33,'Mantenimiento',3,32,0,'Menu_033'),(34,'Importacion Fichero GIE',3,32,0,'Menu_034'),(35,'Exportacion Excel',3,32,0,'Menu_035'),(36,'Gestión de Herramientas',2,5,0,'Menu_036'),(37,'Salida Herramienta',3,36,0,'Menu_037'),(38,'Entrada Herramienta',3,36,0,'Menu_038'),(39,'Cambio Operario',3,36,0,'Menu_039'),(40,'Traspaso entre almacenes',3,36,0,'Menu_040'),(41,'Informes',3,36,0,'Menu_041'),(42,'Empresa',2,6,0,'Menu_042'),(43,'Centros de Coste',3,42,0,'Menu_043'),(44,'Ayuda',2,7,0,'Menu_044'),(45,'Usuarios',2,8,0,'Menu_045'),(46,'Importación Nóminas',3,18,0,'Menu_046'),(47,'Importación Centros de Coste',3,18,0,'Menu_047'),(48,'Importación Dietas',3,18,0,'Menu_048'),(49,'Vacaciones Pendientes',3,18,0,'Menu_049'),(50,'Centros de Coste',4,43,0,'Menu_050'),(51,'Reloj de Fichaje',4,17,0,'Menu_051'),(52,'Informes',4,17,0,'Menu_052'),(53,'Importación de Fichajes',4,17,0,'Menu_053'),(54,'Almacén',3,14,0,'Menu_054'),(55,'Herramienta',3,14,0,'Menu_055');

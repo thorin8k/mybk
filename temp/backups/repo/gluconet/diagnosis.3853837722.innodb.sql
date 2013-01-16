@@ -1,0 +1,14 @@
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `diagnosis` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `creation_date` datetime DEFAULT NULL,
+  `creation_user_id` bigint(20) DEFAULT NULL,
+  `is_deleted` bit(1) DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `short_description` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `diagnosis` VALUES (1,'2011-08-10 00:36:54',1,0x00,'INSUFICIENCIA RENAL','INSRE',0),(2,'2011-08-10 00:36:54',1,0x00,'OVARIO POLIQUISTICO','OVPOL',0),(3,'2011-08-10 00:36:54',1,0x00,'RETINOPATIA','RET',0),(4,'2011-08-10 00:36:54',1,0x00,'NEFROPATIA DIABETICA','NEFDIA',0),(5,'2011-08-10 00:36:54',1,0x00,'MACROANGIOPATIA','MACANG',0),(6,'2011-08-10 00:36:54',1,0x00,'RIESGO CARDIOVASCULAR','RCARD',0),(7,'2011-08-10 17:43:43',3,0x00,'FIB AURC','FA',0),(8,'2011-08-10 17:45:19',3,0x00,'FIBROMIALGIA','FIB',0),(9,'2011-08-10 17:46:57',3,0x00,'DIABETES','DIA',0),(10,'2011-08-10 17:49:39',3,0x00,'MIIIE','MI',0),(11,'2011-08-10 22:59:41',3,0x00,'LIBERIANs','LI',0),(12,'2011-08-10 22:59:42',3,0x00,'LIBERIANs','LI',0),(13,'2011-08-10 23:03:35',3,0x00,'MENE','TOR',0),(14,'2011-08-11 15:01:33',3,0x00,'FIB AURCe','FAe',0),(15,'2011-08-11 15:11:58',3,0x00,'HIPOGLUCEMIA','HIP',0),(16,'2011-08-19 14:02:58',3,0x00,'','',0),(17,'2011-08-27 11:34:02',3,0x00,'FIBRILACION AURICULAR','FA',0),(18,'2011-08-27 11:35:02',3,0x00,'FIBRILACIN AURICULAR','FA',0),(19,'2011-08-27 11:35:26',3,0x00,'PAKO','PAKL',0),(20,'2011-08-27 11:38:43',3,0x00,'HIPERGLUCEMIA','HIPER',0),(21,'2011-09-05 09:36:47',3,0x00,'MENARINITIS CRONICA','ME',0),(22,'2011-09-05 12:51:10',3,0x00,'eess','ee',0),(23,'2011-09-05 13:03:19',3,0x00,'FERNNACNO','FER',0),(24,'2011-09-07 12:08:18',3,0x00,'FERDIOPATIA','FE',0),(25,'2011-09-13 09:47:22',3,0x00,'INSUFICIENCIA RENAL','IR',0),(26,'2011-09-29 09:26:16',3,0x00,'FERNADINA','FERN',0),(27,'2011-09-29 12:26:13',3,0x00,'asdfasdf','aaa',0),(28,'2011-10-04 09:52:58',3,0x00,'PATRAS','PAT',0),(29,'2011-10-04 10:16:22',3,0x00,'safasdfadf','asdfq',0),(30,'2011-10-04 10:19:27',3,0x00,'qewrqwer','asdfasdf',0),(31,'2011-10-04 10:19:40',3,0x00,'erdeasdf','dei',0),(32,'2011-10-04 10:19:48',3,0x00,'asdfasdfasdfasdf','asdfasdf',0),(33,'2011-10-04 10:19:51',3,0x00,'qewrasdfasdf','erqewrasdfa',0),(34,'2011-10-04 10:19:53',3,0x00,'dfasdfasdf','qwrqwerfas',0),(35,'2011-10-05 15:35:56',3,0x00,'weirower','asdf',0),(36,'2011-11-03 17:04:44',3,0x00,'SARA','SA',0);

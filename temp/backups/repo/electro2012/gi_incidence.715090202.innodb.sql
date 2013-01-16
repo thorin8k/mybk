@@ -1,0 +1,38 @@
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gi_incidence` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `obra_id` int(11) DEFAULT NULL,
+  `obra_chapter_id` int(11) DEFAULT NULL,
+  `date_incidence` varchar(8) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `vessel_section` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `zone` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `code_design` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `num_definitive` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `comments_incidence` text COLLATE utf8_spanish_ci,
+  `solution` text COLLATE utf8_spanish_ci,
+  `actual_revision` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `previous_revision` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `incidence_type_id` int(11) DEFAULT NULL,
+  `client_person_auth_id` int(11) DEFAULT NULL,
+  `coordinator_id` int(11) DEFAULT NULL,
+  `incidence_clasification_id` int(11) DEFAULT NULL,
+  `team_boss_id` int(11) DEFAULT NULL,
+  `rework_id` int(11) DEFAULT NULL,
+  `operator_id` int(11) DEFAULT NULL,
+  `created_by_id` int(11) DEFAULT NULL,
+  `date_created` varchar(12) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `last_update_by_id` int(11) DEFAULT NULL,
+  `date_last_update` varchar(12) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `incidence_type_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_incidence_incidence_type1` (`incidence_type_id`),
+  KEY `fk_incidence_client_person_auth1` (`client_person_auth_id`),
+  KEY `fk_incidence_worker1` (`coordinator_id`),
+  KEY `fk_incidence_incidence_clasification1` (`incidence_clasification_id`),
+  KEY `fk_incidence_worker2` (`team_boss_id`),
+  KEY `fk_incidence_rework1` (`rework_id`),
+  KEY `fk_incidence_worker3` (`operator_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `gi_incidence` VALUES (33,NULL,1,'20111025','333333333','333333334','','','','','','',NULL,2,NULL,4,NULL,NULL,NULL,0,'',3,'201111170812',''),(43,NULL,1,'20111025','','aadddvv','','','','','','',NULL,NULL,NULL,2,NULL,NULL,NULL,0,'',3,'201111170601',''),(45,NULL,1,'20111027','55555666','asfadfad','','','','','','',10,NULL,4430,3,4649,NULL,5025,0,'',3,'201111070627','Prueba Tipo'),(46,NULL,1,'20111025','asdfasdf','','','','','','','',NULL,NULL,4815,4,4681,NULL,5107,0,'',0,'',NULL),(56,NULL,1,'20111026','123123123','123123','','','','','','',NULL,NULL,NULL,3,NULL,NULL,NULL,3,'201110260953',3,'201111021050',NULL),(63,NULL,1,'20111027','','','','','','','','',NULL,NULL,NULL,5,NULL,NULL,NULL,3,'201110270404',3,'201111020108',NULL),(67,NULL,1,'20111027','','','','','','','','',NULL,NULL,NULL,3,NULL,NULL,NULL,3,'201110270421',3,'201111021102',NULL),(68,NULL,1,'20111027','asdfasdf','','','','','','','',NULL,NULL,NULL,4,NULL,NULL,NULL,3,'201110270422',3,'201110270426',NULL),(69,NULL,1,'20111027',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,NULL,3,'201110270426',3,'201110270426',NULL),(75,NULL,1,'20111103','','','','','','','','',NULL,NULL,NULL,4,4649,NULL,NULL,3,'201111030554',3,'201111030555',NULL),(78,24515,NULL,'20111103','123','','','','','','','',NULL,NULL,NULL,1,NULL,NULL,NULL,3,'201111030639',3,'201111030647',NULL),(79,24515,NULL,'20111103','','','','','','','','',NULL,NULL,NULL,4,NULL,NULL,NULL,3,'201111030640',3,'201111111155',''),(97,24515,NULL,'20111104','','','','','','','','',NULL,NULL,NULL,2,NULL,NULL,NULL,3,'201111040910',3,'201111171142',''),(99,24515,NULL,'20111104','','','','','','','','',10,NULL,NULL,3,NULL,NULL,NULL,3,'201111041051',3,'201111070622','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),(100,24515,NULL,'20111104',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,3,'201111040107',3,'201111040107',NULL),(101,24515,NULL,'20111104',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,NULL,3,'201111040107',3,'201111040107',NULL),(102,NULL,3,'20111104','f','f','f','f','','','f','f',NULL,NULL,NULL,2,4320,NULL,4320,3,'201111040108',3,'201111040109',NULL),(103,NULL,3,'20111104','','','','','','','','',NULL,NULL,NULL,1,NULL,NULL,NULL,3,'201111040116',3,'201111040116',NULL),(104,NULL,1,'20111107',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,NULL,3,'201111071109',3,'201111071109',NULL),(105,24515,NULL,'20111107',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL,NULL,3,'201111070442',3,'201111070442',NULL),(106,24515,NULL,'20111107',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,3,'201111070538',3,'201111070538',NULL),(107,24515,NULL,'20111109',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,3,'201111090448',3,'201111090448',NULL),(108,24515,NULL,'20111109','','','','','','','','',NULL,NULL,NULL,5,NULL,NULL,NULL,3,'201111090449',3,'201111111100',''),(109,NULL,1,'20111110',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,3,'201111101226',3,'201111101226',NULL),(110,NULL,1,'20111114',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,3,'201111141254',3,'201111141254',NULL),(111,24515,NULL,'20111117','','','','','','','','',NULL,NULL,NULL,2,NULL,NULL,NULL,3,'201111171140',3,'201111171144',''),(112,24515,NULL,'20111117','2','','','','','','','',NULL,NULL,NULL,3,NULL,NULL,NULL,3,'201111171145',3,'201111171145',''),(113,24515,NULL,'20111117','','','','','','','3','',NULL,NULL,NULL,4,NULL,NULL,NULL,3,'201111171145',3,'201111171145',''),(114,24515,NULL,'20111117','','','','','','','','4',NULL,NULL,NULL,5,NULL,NULL,NULL,3,'201111171145',3,'201111171145','');
