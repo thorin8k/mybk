@@ -10,11 +10,6 @@ class SiteController extends Controller
 	public function actions()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
-			),
 		);
 	}
 
@@ -42,9 +37,12 @@ class SiteController extends Controller
 				$this->render('error', $error);
 		}
 	}
-
+        /**
+         * Configuration Screen
+         * 
+         */
 	public function actionConfig()
-	{
+	{       //Dropbox authorization
                 if(isset($_GET['revoke']) && $_GET['revoke'] == 1){
                     Config::addOrSetConfig("dropState",1);
                 }
@@ -56,43 +54,33 @@ class SiteController extends Controller
                     Config::addOrSetConfig("dropState",1);
                     $state=1;
                 }
+                //End Dropbox authorization
+                
 		$this->render('config',array('state'=>$state,'tokens'=>$tokens ));
 	}
 
 	public function actionBackup()
 	{
             $data = array();
+            //TODO Get data from config
+            //$connection=new CDbConnection($dsn,$username,$password);
+            //$connection->active=true;
+            //$dbList = $connection->createCommand("show databases;")->queryAll();
+            
             $dbList = Yii::app()->db->createCommand("show databases;")->queryAll();
+            //obtener todas las bd y almacenarlas en un array asociativo
+            //se utiliza un hash crc32 de 8 caracteres en función del nombre de  la bd
+            //para su identificación
             foreach ($dbList as $key=>$db) {
-                $data[] = array('id'=>$key,'Database'=> $db['Database']);
+                $data[] = array('id'=>hash('crc32',$db['Database']),'Database'=> $db['Database']);
             }
             $errors = "";
             if(isset($_GET['dobk'])){
+                $filterDB = $this->filterDbList($data, $_GET['bkids']);
+                Utils::dumpDatabases($filterDB);
                 
-                $filterDB = array();
-                foreach ($dbList as $key=>$db) {
-                    if(!in_array($key,explode(',',$_GET['bkids']))){
-                        $filterDB[] = $db['Database'];
-                    }
-                }
-                
-                $db = new MYSQL_DUMP;
-                $db->dbhost = 'localhost';
-                $db->dbuser = 'root';
-                $db->dbpwd = '';
-                $db->backupsToKeep = 30;
-                $db->showDebug = false;
-                $db->backupDir = './temp/backups/';
-                $db->ignoreDatabases = $filterDB;
-                //$db->ignoreDatabases = array('test','mysql','performance_schema','phpmyadmin');
-                //$db->emptyList = array('largedb.large_table1','largedb.cachetable');
-                $status ="success";
-                if(!$db->dumpDatabases()){
-                    $errors .= $db->errorMsg;
-                    $status= 'failure';
-                }
                 echo CJSON::encode(array(
-                        'status'=>$status,
+                        'status'=>'success',
                         'div'=> $errors,
                     ));
                 exit;
@@ -115,5 +103,17 @@ class SiteController extends Controller
         public function setConfigTokens($token,$secret){
             Config::addOrSetConfig('dropToken', $token);
             Config::addOrSetConfig('dropTokenSec', $secret);
+        }
+        
+        
+        
+        private function filterDbList($data,$filters){
+            $filterDB = array();
+            foreach ($data as $db) {
+                if(in_array($db['id'],explode(',',$filters))){
+                    $filterDB[] = $db['Database'];
+                }
+            }
+            return $filterDB;
         }
 }

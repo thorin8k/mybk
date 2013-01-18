@@ -7,16 +7,12 @@
         </div><!-- content -->
     </div>
     <div class="span3">
-        <div id="sidebar">
+        <div id="well">
         <?php
-            $this->beginWidget('zii.widgets.CPortlet', array(
-                'title'=>'Operations',
-            ));
             $this->widget('bootstrap.widgets.TbMenu', array(
+                'type'=>'list',
                 'items'=>$this->menu,
-                'htmlOptions'=>array('class'=>'operations'),
             ));
-            $this->endWidget();
         ?>
         </div><!-- sidebar -->
     </div>

@@ -19,3 +19,21 @@ body {
    width:100%;
    height:110px;   /* Height of the footer */
 }
+
+#db-grid table tbody tr,#db-grid table tbody td{
+    width:300px;
+}
+#db-grid table tbody{
+    height: 350px;
+    overflow:auto;
+    display: block !important;
+    width:100%;
+} 
+#db-grid table thead tr {
+    display: block !important;
+}
+
+.grid-view table.items tr.selected td{
+    background-color: rgb(0, 136, 204)!important;
+    color:white !important;
+}

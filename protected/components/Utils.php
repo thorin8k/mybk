@@ -75,45 +75,26 @@ class Utils{
         $d->close();
     }
     
-    public static function Zip($source, $destination){
+    public static function dumpDatabases($array,$download = true){
+        //Recorrer y realizar un backup de cada una de las bd presentes en $ARRAY
+        $dump = "";
+        $path = "./temp/backups/";
+        $backup = new MyBackUp();
+        $backup->server = 'localhost';
+        $backup->toFile = false;
+        $backup->usern = Yii::app()->db->username;
+        $backup->userp = Yii::app()->db->password;
 
-        $zip = new ZipArchive();
-        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-            return false;
+        foreach($array as $db){
+            $backup->dbase = $db;
+            $dump = $backup->_retrieve();
+            $zip = new ZipArchive();
+            $zipped= $path.$db.date('Ymdhi').'.zip';
+            $zip->open($zipped, ZipArchive::OVERWRITE);
+
+            $zip->addFromString($db.date('Ymdhi').'.sql', $dump);
+            $zip->close();
         }
-
-        $source = str_replace('\\', '/', realpath($source));
-
-        if (is_dir($source) === true)
-        {
-            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-
-            foreach ($files as $file)
-            {
-                $file = str_replace('\\', '/', $file);
-
-                // Ignore "." and ".." folders
-                if( in_array(substr($file, strrpos($file, '/')+1), array('.', '..')) )
-                    continue;
-
-                $file = realpath($file);
-
-                if (is_dir($file) === true)
-                {
-                    $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
-                }
-                else if (is_file($file) === true)
-                {
-                    $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
-                }
-            }
-        }
-        else if (is_file($source) === true)
-        {
-            $zip->addFromString(basename($source), file_get_contents($source));
-        }
-
-        return $zip->close();
     }
 }
 ?>

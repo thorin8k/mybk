@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Configuración</h1>
+<h1>App Configuration</h1>
 <br/>
 <?php 
 /* Please supply your own consumer key and consumer secret */
@@ -17,11 +17,10 @@ $dropbox = new Dropbox_API($oauth);
 
 
 echo '<div>';
-echo "<b>Acceso a Dropbox: </b>";
+echo "<b>Dropbox Access: </b>";
 switch($state) {
     case 1 :
         $tokens = $oauth->getRequestToken();
-        echo "Pulse en el siguiente enlace para autorizar a la aplicación:\n";
         echo "<a href=".$oauth->getAuthorizeUrl('http://'.Yii::app()->request->getServerName().Yii::app()->request->requestUri).">Autorizar</a>";
         Config::addOrSetConfig("dropState",2);
         $this->setConfigTokens($tokens['token'],$tokens['token_secret']);
@@ -49,8 +48,8 @@ switch($state) {
     case 3 :
         $oauth->setToken($tokens);
         $data = $dropbox->getAccountInfo();
-        echo "El usuario: ".$data['display_name']." ha sido autenticado.   ";
-        echo CHtml::link("Revocar Acceso",array('site/config','revoke'=>true));
+        echo " Logged as ".$data['display_name']."   ";
+        echo CHtml::link("Revoke Access",array('site/config','revoke'=>true));
         break;
 }
 echo '</div>';
