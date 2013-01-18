@@ -94,6 +94,7 @@ class Utils{
 
             $zip->addFromString($db.date('Ymdhi').'.sql', $dump);
             $zip->close();
+            chmod($zipped, 0777);
         }
     }
     

@@ -6,9 +6,8 @@ $this->breadcrumbs=array(
 	'About',
 );
 ?>
-<div  style='float:left;'>
-<h2>Instant Backup</h2>
 
+<h2>Instant Backup</h2>
 <p >Select the databases to backup.</p>
 
 <?php 
@@ -20,16 +19,13 @@ $this->widget('bootstrap.widgets.TbButton', array(
     
     'htmlOptions'=>array('id'=>'dobk',),
 ));
-echo "</div>";
 
-echo "<div style='float:left; margin-left:250px; margin-top:40px;'>";
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'db-grid',
     'type'=>'striped bordered condensed',
     'dataProvider'=>$gridDataProvider,
     'template'=>"{items}",
     'selectableRows'=>"2",
-    'htmlOptions'=>array('style'=>'width: 300px; '),
     'columns'=>array(
         array('name'=>'Database', 'header'=>'Database'),
         //array(
@@ -42,7 +38,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     $success = "alert(data.status);";
 Utils::CreateAjaxReturnFunction("doBackUp(id)","/site/backup",$failure,$success,"'dobk='+true+'&bkids='+id",'get');
 ?>
-</div>
 <div class="clear"></div>
 <script type="text/javascript">
     $(document).ready(function(){
