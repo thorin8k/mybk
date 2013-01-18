@@ -21,7 +21,7 @@ body {
 }
 
 #db-grid table tbody tr,#db-grid table tbody td{
-    width:300px;
+    display: block !important;
 }
 #db-grid table tbody{
     height: 350px;
@@ -36,4 +36,7 @@ body {
 .grid-view table.items tr.selected td{
     background-color: rgb(0, 136, 204)!important;
     color:white !important;
+}
+div.clear{
+    clear:both;
 }

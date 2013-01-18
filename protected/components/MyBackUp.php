@@ -134,10 +134,7 @@ class MyBackUp
 		$value .= "-- \n";
 		$value .= "--  Table structure for table `$table`\n";
 		$value .= "-- \n\n";
-                //FIXME esto se debe de hacer cada database , no cada tabla
-                $value .= "/*!40000 DROP DATABASE IF EXISTS `$this->dbase`*/; \n\n";
-                $value .= "CREATE DATABASE `$this->dbase`; \n\n";
-                $value .= "USE `$this->dbase`; \n\n";
+                
                 
 		if(!($result = $this->_query("SHOW CREATE TABLE $table")))
 		{
@@ -190,6 +187,10 @@ class MyBackUp
 			$value .="-- \n";
 			$value .="-- Database: `$this->dbase`\n";
 			$value .="-- \n";
+                        
+                        $value .= "/*!40000 DROP DATABASE IF EXISTS `$this->dbase`*/; \n\n";
+                        $value .= "CREATE DATABASE `$this->dbase`; \n\n";
+                        $value .= "USE `$this->dbase`; \n\n";
 		}
 		if(!($tables = $this->_getTables()))
 		{
