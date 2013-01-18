@@ -21,6 +21,7 @@
             'items'=>array(
                 array('label'=>'Home', 'url'=>array('/site/index')),
                 array('label'=>'Backup', 'url'=>array('/site/backup')),
+                array('label'=>'Backup Works', 'url'=>array('/backupWork')),
                 array('label'=>'Config', 'url'=>array('/site/config'))
             ),
         ),
