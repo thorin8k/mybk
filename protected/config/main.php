@@ -40,7 +40,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=mybk',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => '1',
 			'charset' => 'utf8',
 		),
 		

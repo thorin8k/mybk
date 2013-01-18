@@ -96,5 +96,32 @@ class Utils{
             $zip->close();
         }
     }
+    
+    public static function listAllDatabases(){
+        $data = array();
+        //TODO Get data from config
+        //$connection=new CDbConnection($dsn,$username,$password);
+        //$connection->active=true;
+        //$dbList = $connection->createCommand("show databases;")->queryAll();
+
+        $dbList = Yii::app()->db->createCommand("show databases;")->queryAll();
+        //obtener todas las bd y almacenarlas en un array asociativo
+        //se utiliza un hash crc32 de 8 caracteres en función del nombre de  la bd
+        //para su identificación
+        foreach ($dbList as $key=>$db) {
+            $data[] = array('id'=>hash('crc32',$db['Database']),'Database'=> $db['Database']);
+        }
+        return $data;
+    }
+    
+    public static function filterDbList($data,$filters){
+        $filterDB = array();
+        foreach ($data as $db) {
+            if(in_array($db['id'],explode(',',$filters))){
+                $filterDB[] = $db['Database'];
+            }
+        }
+        return $filterDB;
+    }
 }
 ?>

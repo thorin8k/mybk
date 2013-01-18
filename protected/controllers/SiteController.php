@@ -61,24 +61,16 @@ class SiteController extends Controller
 
 	public function actionBackup()
 	{
-            $data = array();
-            //TODO Get data from config
-            //$connection=new CDbConnection($dsn,$username,$password);
-            //$connection->active=true;
-            //$dbList = $connection->createCommand("show databases;")->queryAll();
+            $data = Utils::listAllDatabases();
             
-            $dbList = Yii::app()->db->createCommand("show databases;")->queryAll();
-            //obtener todas las bd y almacenarlas en un array asociativo
-            //se utiliza un hash crc32 de 8 caracteres en función del nombre de  la bd
-            //para su identificación
-            foreach ($dbList as $key=>$db) {
-                $data[] = array('id'=>hash('crc32',$db['Database']),'Database'=> $db['Database']);
-            }
             $errors = "";
             if(isset($_GET['dobk'])){
-                $filterDB = $this->filterDbList($data, $_GET['bkids']);
+                //Filter only selected dbs
+                $filterDB = Utils::filterDbList($data, $_GET['bkids']);
+                //dump dbs
                 Utils::dumpDatabases($filterDB);
-                
+                //show success
+                //TODO Handle errors
                 echo CJSON::encode(array(
                         'status'=>'success',
                         'div'=> $errors,
@@ -106,14 +98,4 @@ class SiteController extends Controller
         }
         
         
-        
-        private function filterDbList($data,$filters){
-            $filterDB = array();
-            foreach ($data as $db) {
-                if(in_array($db['id'],explode(',',$filters))){
-                    $filterDB[] = $db['Database'];
-                }
-            }
-            return $filterDB;
-        }
 }

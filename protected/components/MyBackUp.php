@@ -134,7 +134,7 @@ class MyBackUp
 		$value .= "-- \n";
 		$value .= "--  Table structure for table `$table`\n";
 		$value .= "-- \n\n";
-                
+                //FIXME esto se debe de hacer cada database , no cada tabla
                 $value .= "/*!40000 DROP DATABASE IF EXISTS `$this->dbase`*/; \n\n";
                 $value .= "CREATE DATABASE `$this->dbase`; \n\n";
                 $value .= "USE `$this->dbase`; \n\n";
