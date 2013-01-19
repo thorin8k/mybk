@@ -6,12 +6,6 @@ $this->breadcrumbs=array(
 	'Backup Works'
 );
 
-$this->menu=array(
-	//array('label'=>'List BackupWork', 'url'=>array('index')),
-        array('label'=>'Operations'),
-        array('label'=>'Create new work', 'icon'=>'pencil', 'url'=>array('create')),
-);
-
 ?>
 
 <h2>Backup Works</h2>
@@ -20,7 +14,17 @@ $this->menu=array(
 </p>
 
 
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
+<?php 
+$this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Create Backup Work',
+    'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+    'buttonType'=>'link',
+    'size'=>'normal', // null, 'large', 'small' or 'mini'
+    'url'=>array('create'),
+    'htmlOptions'=>array('id'=>'dobk',),
+));
+
+$this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'backup-work-grid',
         'type'=>'striped bordered ',
 	'dataProvider'=>$model->search(),
@@ -29,12 +33,26 @@ $this->menu=array(
 	'columns'=>array(
 		//'id',
 		'desc',
-		'date_created',
-		'afected_dbs',
-		'active',
+		array(
+                    'name'=>'afected_dbs',
+                    'value'=>'$data->getDatabaseNameByHash()'
+                ),
+		array(
+                    'name'=>'type',
+                    'value'=>'$data->types->value'
+                ),
+                
+		array(
+                    'name'=>'active',
+                    'value'=>'$data->active == 1? "Yes" : "No";'
+                ),
+		array(
+                    'name'=>'sendToDropbox',
+                    'value'=>'$data->sendToDropbox == 1? "Yes" : "No";'
+                ),
 		array(
 			'class'=>'CButtonColumn',
-                        'template' => '{update}{delete}',
 		),
 	),
-)); ?>
+)); 
+?>

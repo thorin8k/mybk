@@ -6,7 +6,11 @@
  * The followings are the available columns in table 'backup_work':
  * @property integer $id
  * @property string $desc
- * @property string $date_created
+ * @property string $min
+ * @property string $hour
+ * @property string $day
+ * @property string $month
+ * @property string $weekday
  * @property string $afected_dbs
  * @property string $active
  */
@@ -39,10 +43,10 @@ class BackupWork extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('desc', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('id,active,sendToDropbox,type', 'numerical', 'integerOnly'=>true),
 			array('desc', 'length', 'max'=>80),
 			array('afected_dbs', 'length', 'max'=>200),
-			array('date_created', 'length', 'max'=>12),
+			array('min, hour, day, month, week_day', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, desc, date_created,afected_dbs,active', 'safe', 'on'=>'search'),
@@ -57,6 +61,9 @@ class BackupWork extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    
+			'types' => array(self::BELONGS_TO, 'ExecTypes', 'type'),
+			'logs' => array(self::HAS_MANY, 'BackupWorkLog', 'backup_work_id'),
 		);
 	}
 
@@ -68,7 +75,7 @@ class BackupWork extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'desc' => 'Description',
-			'date_created' => 'Date Created',
+			'types.value' => 'Type',
 			'afected_dbs' => 'Databases',
 			'active' => 'Active',
 		);
@@ -87,10 +94,49 @@ class BackupWork extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('desc',$this->desc,true);
-		$criteria->compare('date_created',$this->date_created,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getNextExecutionDate(){
+            $result="";
+            switch($this->type){
+                case "0";
+                    $result = "Daily";
+                    break;
+                case "1";
+                    $result = "Weekly";
+                    break;
+                case "2";
+                    $result = "Monthly";
+                    break;
+                case "3";
+                    $result = "Yearly";
+                    break;
+            }
+            
+            return $result;
+        }
+        
+        public function getDatabaseNameByHash(){
+            $data = Utils::listAllDatabases();
+            $modelDbs = explode(',',$this->afected_dbs);
+            $result = "";
+            foreach($modelDbs as $selDb){
+                foreach($data as $db){
+                    if($db['id'] == $selDb){
+                        $result .= $db['Database'].', ';
+                    }
+                }
+            }
+            return substr($result,0, -2);
+        }
+        
+        protected function afterSave(){
+            parent::afterSave();
+            Utils::updateCronJobs();
+
+        }
 }

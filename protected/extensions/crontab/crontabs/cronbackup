@@ -1,0 +1,1 @@
+46 22 * * * php /var/www/mybk/protected/yiic.php backup --bkId=2

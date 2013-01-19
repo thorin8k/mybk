@@ -3,7 +3,7 @@
 
 $this->pageTitle=Yii::app()->name . ' - BackUp';
 $this->breadcrumbs=array(
-	'About',
+	'Backup',
 );
 ?>
 
@@ -20,30 +20,29 @@ $this->widget('bootstrap.widgets.TbButton', array(
     'htmlOptions'=>array('id'=>'dobk',),
 ));
 
+echo '&nbsp;&nbsp;&nbsp;Send to dropbox: ';
+echo CHtml::checkBox('sendToDBP',false);
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'db-grid',
     'type'=>'striped bordered condensed',
     'dataProvider'=>$gridDataProvider,
     'template'=>"{items}",
     'selectableRows'=>"2",
+    'htmlOptions'=>array('style'=>'width: 500px; '),
     'columns'=>array(
         array('name'=>'Database', 'header'=>'Database'),
-        //array(
-            //'class'=>'bootstrap.widgets.TbButtonColumn',
-          //  'htmlOptions'=>array('style'=>'width: 50px'),
-        //),
     ),
 ));
     $failure = "alert(data.div);";
-    $success = "alert(data.status);";
-Utils::CreateAjaxReturnFunction("doBackUp(id)","/site/backup",$failure,$success,"'dobk='+true+'&bkids='+id",'get');
+    $success = "alert(data.div);";
+Utils::CreateAjaxReturnFunction("doBackUp(id,dropbox)","/site/backup",$failure,$success,"'dobk='+true+'&bkids='+id+'&dropbox='+dropbox",'get');
 ?>
 <div class="clear"></div>
 <script type="text/javascript">
     $(document).ready(function(){
         
         $('#dobk').click(function(){
-            doBackUp($.fn.yiiGridView.getSelection('db-grid'));
+            doBackUp($.fn.yiiGridView.getSelection('db-grid'),$('#sendToDBP').is(':checked'));
         });
     });
 </script>

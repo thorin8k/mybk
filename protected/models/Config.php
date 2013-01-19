@@ -10,6 +10,15 @@
  */
 class Config extends CActiveRecord
 {
+        const DBPStatus = 'dropState';
+        const DBPToken = 'dropToken';
+        const DBPSecret = 'dropTokenSec';
+        const BKPath = 'bkpath';
+        const DBPPath = 'dbppath';
+        const DBHost = 'dbhost';
+        const DBUser = 'dbuser';
+        const DBPwd = 'dbpwd';
+        const AdmMail = 'usrmail';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
