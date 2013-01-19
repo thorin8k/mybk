@@ -3,6 +3,7 @@
 class SiteController extends Controller
 {
         
+        
 	public $layout='//layouts/column1';
 	/**
 	 * Declares class-based actions.
@@ -43,15 +44,24 @@ class SiteController extends Controller
          */
 	public function actionConfig()
 	{       //Dropbox authorization
+                if(isset($_POST['key_cfg']) && isset($_POST['value'])){
+                    $keys = $_POST['key_cfg'];
+                    $values = $_POST['value'];
+                    
+                    for ($index = 0; $index < count($keys); $index++) {
+                        Config::addOrSetConfig($keys[$index], $values[$index]);
+                    }
+                }           
+            
                 if(isset($_GET['revoke']) && $_GET['revoke'] == 1){
-                    Config::addOrSetConfig("dropState",1);
+                    Config::addOrSetConfig(Config::DBPStatus,1);
                 }
 		$state = 0;
                 $tokens = array();
-                $state = Config::getConfig("dropState");
-                $tokens = $this->loadConfigTokens();
+                $state = Config::getConfig(Config::DBPStatus);
+                $tokens = Utils::loadConfigTokens();
                 if(empty($state) || empty($tokens)){
-                    Config::addOrSetConfig("dropState",1);
+                    Config::addOrSetConfig(Config::DBPStatus,1);
                     $state=1;
                 }
                 //End Dropbox authorization
@@ -68,12 +78,19 @@ class SiteController extends Controller
                 //Filter only selected dbs
                 $filterDB = Utils::filterDbList($data, $_GET['bkids']);
                 //dump dbs
-                Utils::dumpDatabases($filterDB);
+                if(!empty($filterDB)){
+                    Utils::dumpDatabases($filterDB,'instant',$_GET['dropbox']);
+                }else{
+                    echo CJSON::encode(array(
+                        'status'=>'failure',
+                        'div'=> 'No databases selected.',
+                    ));
+                exit;
+                }
                 //show success
-                //TODO Handle errors
                 echo CJSON::encode(array(
                         'status'=>'success',
-                        'div'=> $errors,
+                        'div'=> 'Backup created in instants folder. Inside your configured BK Folder.',
                     ));
                 exit;
             }
@@ -81,21 +98,6 @@ class SiteController extends Controller
             $gridDataProvider = new CArrayDataProvider($data,array('pagination'=>false));
             $this->render('backup',array('gridDataProvider'=>$gridDataProvider,'errors'=>$errors));
 	}
-        
-        
-
-        public function loadConfigTokens(){
-            $tokens = array();
-            $tokens['token'] = Config::getConfig('dropToken');;
-            $tokens['token_secret'] = Config::getConfig('dropTokenSec');
-
-            return $tokens;
-        }
-
-        public function setConfigTokens($token,$secret){
-            Config::addOrSetConfig('dropToken', $token);
-            Config::addOrSetConfig('dropTokenSec', $secret);
-        }
         
         
 }

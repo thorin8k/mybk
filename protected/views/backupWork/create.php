@@ -7,11 +7,8 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'Manage BackupWork', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Create BackupWork</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('gridDataProvider'=>$gridDataProvider,'model'=>$model)); ?>

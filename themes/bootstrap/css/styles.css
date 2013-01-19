@@ -19,12 +19,14 @@ body {
    width:100%;
    height:110px;   /* Height of the footer */
 }
-
+form .grid-view{
+    padding-top:0;
+}
 #db-grid table tbody tr,#db-grid table tbody td{
     display: block !important;
 }
 #db-grid table tbody{
-    height: 350px;
+    max-height: 350px;
     overflow:auto;
     display: block !important;
     width:100%;
@@ -39,4 +41,19 @@ body {
 }
 div.clear{
     clear:both;
+}
+form [class*="span"]{
+    margin-left:0;
+    margin-right:20px;
+}
+.hide{
+    display:none;
+}
+
+.detail-view th{
+    text-align:left !important;
+}
+
+.grid-view .button-column{
+    width:65px !important;
 }
