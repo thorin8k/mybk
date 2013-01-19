@@ -110,10 +110,9 @@ echo '</div>';
 <div>
     <b>Active cron jobs: </b><br/>
     <?php
-    
-        $output = exec('crontab -l');
-        echo $output;
-    
+        exec('crontab -l', $scanme);
+        $scanme = implode("<br/>",$scanme);
+        echo $scanme;
     ?>
     
 </div>
