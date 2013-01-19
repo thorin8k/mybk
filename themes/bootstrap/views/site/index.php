@@ -8,6 +8,6 @@ $this->pageTitle=Yii::app()->name;
     'heading'=>''.CHtml::encode(Yii::app()->name),
 )); ?>
 
-<p>Testing</p>
+<p>First release of a mysql backup system. </p>
 
 <?php $this->endWidget(); ?>
