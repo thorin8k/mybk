@@ -486,7 +486,7 @@ class CronApplicationJob extends Cronjob
 	 */
 	public function getCommand()
 	{
-		$command = 'php '.Yii::getPathOfAlias('webroot').'/'.$this->entryScript . '.php ' . $this->commandName;
+		$command = '/usr/bin/php '.Yii::getPathOfAlias('webroot').'/'.$this->entryScript . '.php ' . $this->commandName;
 		
 		foreach($this->parameters as $parameter)
 			$command .= ' ' . $parameter;	
