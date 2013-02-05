@@ -1,1 +1,2 @@
-46 22 * * * php /var/www/mybk/protected/yiic.php backup --bkId=2
+0 16 * * * php /var/www/mybackup/protected/yiic.php backup --bkId=6
+30 21 * * 5 php /var/www/mybackup/protected/yiic.php backup --bkId=7
