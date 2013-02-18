@@ -148,7 +148,7 @@ class Crontab extends CApplicationComponent{
 		if(!$this->filename)
 			exit('No name specified for cron file');
 			
-                $command ="crontab ".$this->directory.$this->filename; 
+                $command ="crontab -u server ".$this->directory.$this->filename; 
 		exec($command);
                 
 	}
