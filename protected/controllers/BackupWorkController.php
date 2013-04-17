@@ -178,7 +178,7 @@ class BackupWorkController extends Controller
                 $result = Utils::dumpDatabases($filterDB,$model->desc, $model->sendToDropbox);
 
                 $log = new BackupWorkLog();
-                $log->backup_work_id = $bkId;
+                $log->backup_work_id = $_POST["bk_id"];
                 $log->date_exec = date('Ymd');
                 $log->status_messages = $result;
                 //handle errors and log
