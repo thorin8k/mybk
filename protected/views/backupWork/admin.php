@@ -51,8 +51,47 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                     'value'=>'$data->sendToDropbox == 1? "Yes" : "No";'
                 ),
 		array(
-			'class'=>'CButtonColumn',
-		),
+                    'class' => 'CButtonColumn',
+                    'header' => '',
+                    'template' => '{exec}{view}{update}{delete}',
+                    'buttons'=>array(
+                        'exec'=>array(
+                            'label'=>'Ejecutar',
+                            'url'=>'$data->id',
+                            'imageUrl'=>'css/server_go.png',
+                            'click'=>'function(){ executeBKTask($(this).attr("href")); return false;}'
+                        ),
+                        
+                    )
+                )
 	),
 )); 
+
+
+echo '<script type="text/javascript">';
+
+        echo 'function executeBKTask(id){';
+        echo 'var params = "bk_id="+id;';
+        echo CHtml::ajax(array(
+                'url'=>array("backupWork/execute"),
+                'data'=>"js:params",
+                'type'=>"post",
+                'dataType'=>'json',
+                'success'=>"function(data){
+                    if(typeof(data) == 'object'){
+                        if(data.status == 'failure'){
+                            alert('Fail');
+                        }else if(data.status == 'success'){
+                            alert('OK');
+                        }else if(data.status == 'error'){
+                            alert('Fail');
+                        }
+                    }else{
+                        alert('La solicitud efectuada no ha devuelto ninguna información.');
+                    }
+               }"
+            ));
+
+          echo '      return false; }
+        </script>';
 ?>
